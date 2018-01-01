@@ -1,5 +1,12 @@
 *.save
-bin/*
-obj/*
+*/bin/*.*
+*/obj/*.*
+*/*/bin/*.*
+*/*/obj/*.*
+*/bin/*
+*/obj/*
+*/*/bin/*
+*/*/obj/*
 *.layout
 *.depend
+*.exe
