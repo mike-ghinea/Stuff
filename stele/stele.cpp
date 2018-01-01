@@ -1,0 +1,55 @@
+#include<fstream>
+using namespace std;
+FILE*cin=fopen("stele.in","r"),*cout=fopen("stele.out","w");
+int m,n,nr,i,j,q,a[101][11],v[11],b[101][11],Max=-1,l;
+int main()
+{
+ 	fscanf(cin,"%d%d",&n,&m);
+ 	for(i=1;i<=n;i++)
+        for(j=1;j<=m;j++)
+        {
+            fscanf(cin,"%d",&a[i][j]);
+            b[i][j]=a[i][j];
+        }
+    while(v[m+1]==0)
+    {
+        for(i=1;i<=m+1;i++)
+        {
+            if(v[i]==1)
+                v[i]=0;
+            else
+            {
+                v[i]=1;
+                break;
+            }
+        }
+        for(l=1;l<=m;l++)
+            {
+                if(v[l]==1)
+                {
+                    for(i=1;i<=n;i++)
+                    if(a[i][l]==1)
+                        a[i][l]=0;
+                    else
+                        a[i][l]=1;
+                }
+            }
+        nr=0;
+        for(i=2;i<=n-1;i++)
+        {
+            for(j=2;j<=m-1;j++)
+            {
+                q=a[i][j]+a[i-1][j]+a[i][j-1]+a[i+1][j]+a[i][j+1];
+                if(q==5)
+                    nr++;
+            }
+        }
+        if(nr>=Max)
+            Max=nr;
+        for(i=1;i<=n;i++)
+            for(j=1;j<=m;j++)
+                a[i][j]=b[i][j];
+    }
+   fprintf(cout,"%d",Max);
+	return 0;
+}
